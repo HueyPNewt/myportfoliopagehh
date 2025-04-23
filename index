@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Portfolio</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Portfolio Sections */
+        .portfolio-sections {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 350px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-content {
+            padding: 20px;
+        }
+        
+        .portfolio-content h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #000000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #000000;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #000000;
+            color: white;
+        }
+        
+        /* Lightbox styles (hidden by default) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border: 3px solid white;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+		<!-- Navigation Menu -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="Art Page.html">Art</a>
+  <a href="Photography page.html">Photography</a>
+</nav>
+        <div class="container">
+            <h1>My Creative Portfolio</h1>
+            <p>Showcasing my work in art, photography, and videography</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="portfolio-sections">
+            <!-- Art Section -->
+            <div class="portfolio-item">
+              <div class="portfolio-image">
+               <img src="images/huebearfront copy.jpg" width="4000" height="4000" alt=""/>
+                </div>
+                
+                <div class="portfolio-content">
+                  <h2>Art Portfolio</h2>
+                    <p>A collection of my drawings, and digital art pieces showcasing my artistic journey and style.</p>
+                    <a href="art.html" class="btn">View Art Gallery</a>
+              </div>
+            </div>
+            
+            <!-- Photography Section -->
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                   <img src="images/ANMP0076 copy.jpg" width="6480" height="8640" alt=""/>
+                </div>
+                <div class="portfolio-content">
+                    <h2>Photography</h2>
+                    <p>Explore my photographic work,capturing moments and emotions from various Projects i've done over the years.</p>
+                    <a href="photography.html" class="btn">View Photo Gallery</a>
+                </div>
+            </div>
+            
+      
+                 
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Lightbox for image previews -->
+    <div class="lightbox" id="imageLightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Creative Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple lightbox functionality
+        function openLightbox(imageSrc) {
+            document.getElementById('lightboxImage').src = imageSrc;
+            document.getElementById('imageLightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('imageLightbox').style.display = 'none';
+        }
+        
+        // Close lightbox when clicking outside the image
+        window.onclick = function(event) {
+            const lightbox = document.getElementById('imageLightbox');
+            if (event.target == lightbox) {
+                closeLightbox();
+            }
+        }
+    </script>
+</body>
+</html>
