@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Art Portfolio</title>
+    <style>
+        /* Shared Styles with main page */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Art Gallery Specific Styles */
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 40px 0;
+        }
+        
+        .art-piece {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .art-piece:hover {
+            transform: translateY(-5px);
+        }
+        
+        .art-image {
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .art-piece:hover .art-image img {
+            transform: scale(1.05);
+        }
+        
+        .art-info {
+            padding: 15px;
+        }
+        
+        .art-info h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .art-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+        
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 3px solid white;
+        }
+        
+        .art-details {
+            color: white;
+            margin-top: 15px;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+	<!-- Navigation Menu -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="Art Page.html">Art</a>
+  <a href="Photography page.html">Photography</a>
+</nav>
+    <header>
+        <div class="container">
+            <h1>My Art Portfolio</h1>
+            <p>Exploring creativity through various mediums and techniques</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <a href="index.html" class="back-btn">&larr; Back to Main Portfolio</a>
+        
+        <section class="art-gallery">
+            <!-- Art Piece 1 -->
+            <div class="art-piece">
+                <div class="art-image" onclick="openLightbox('art1.jpg', 'Huebear', '2024, Oil on canvas')">
+                   <img src="images/Huebear Records.jpg" width="2480" height="3508" alt=""/>
+                </div>
+				
+                <div class="art-info">
+                    <h3>HUEBEAR</h3>
+                    <p>, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Art Piece 2 -->
+            <div class="art-piece">
+                <div class="art-image" onclick="openLightbox('art2.jpg', 'Charcoal Drawing', '2022, Charcoal on paper')">
+                    <img src="images/Huebear Basketball.jpg" width="3508" height="2480" alt=""/>
+                </div>
+                <div class="art-info">
+                    <h3>BASKETBALL</h3>
+                    <p>, 2022</p>
+                </div>
+            </div>
+            
+            <!-- Art Piece 3 -->
+            <div class="art-piece">
+                <div class="art-image" onclick="openLightbox('art3.jpg', 'Digital Art', '2023, Digital painting')">
+                   <img src="images/FONT3.jpg" width="2048" height="2048" alt=""/>
+                </div>
+                <div class="art-info">
+                    <h3>DIGITAL</h3>
+                    <p>, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Add more art pieces as needed -->
+        </section>
+    </main>
+    
+    <!-- Lightbox for art pieces -->
+    <div class="lightbox" id="artLightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxArtImage" src="" alt="">
+            <div class="art-details">
+                <h2 id="artTitle"></h2>
+                <p id="artDescription"></p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Art Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Lightbox functionality for art pieces
+        function openLightbox(imageSrc, title, description) {
+            document.getElementById('lightboxArtImage').src = imageSrc;
+            document.getElementById('artTitle').textContent = title;
+            document.getElementById('artDescription').textContent = description;
+            document.getElementById('artLightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('artLightbox').style.display = 'none';
+        }
+        
+        // Close lightbox when clicking outside the image
+        window.onclick = function(event) {
+            const lightbox = document.getElementById('artLightbox');
+            if (event.target == lightbox) {
+                closeLightbox();
+            }
+        }
+    </script>
+</body>
+</html>
